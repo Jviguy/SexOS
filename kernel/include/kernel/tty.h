@@ -21,4 +21,9 @@ extern "C" /* Use C linkage */
 #endif
 void terminal_writestring(const char* data);
 
+unsigned char readRegVGA(unsigned short reg, unsigned char idx);
+
+void writeRegVGA(unsigned short reg, unsigned char idx, unsigned char val);
+
+void setFontVGA(const unsigned char * buffer, int h);
 #endif
