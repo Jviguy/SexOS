@@ -1,4 +1,4 @@
-exOS
+# SexOS
 A small and simple OS / kernel that supports barely anything. <br>
 ## Compiling
 This OS is only i686 (triple) which is x86 as of now and should only be ran in virtual enviroments.<br>
