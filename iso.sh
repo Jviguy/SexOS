@@ -1,15 +1,15 @@
 #!/bin/sh
 set -e
-sh build.sh
+. ./build.sh
 
 mkdir -p isodir
 mkdir -p isodir/boot
 mkdir -p isodir/boot/grub
 
-cp sysroot/boot/SexOS.kernel isodir/boot/SexOS.kernel
+cp sysroot/boot/myos.kernel isodir/boot/myos.kernel
 cat > isodir/boot/grub/grub.cfg << EOF
-menuentry "SexOS" {
-	multiboot /boot/SexOS.kernel
+menuentry "myos" {
+	multiboot /boot/myos.kernel
 }
 EOF
-grub-mkrescue -o SexOS.iso isodir
+grub-mkrescue -o myos.iso isodir

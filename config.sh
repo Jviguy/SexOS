@@ -7,7 +7,7 @@ export HOST=${HOST:-$(./default-host.sh)}
 export AR=${HOST}-ar
 export AS=${HOST}-as
 export CC=${HOST}-gcc
-export PP=${HOST}-g++
+export CPP=${HOST}-g++
 
 export PREFIX=/usr
 export EXEC_PREFIX=$PREFIX

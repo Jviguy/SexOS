@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-sh config.sh
+. ./config.sh
 
 for PROJECT in $PROJECTS; do
   (cd $PROJECT && $MAKE clean)
