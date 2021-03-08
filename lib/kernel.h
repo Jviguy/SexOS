@@ -157,6 +157,7 @@ void terminal_writestring(const char* data) {
 		std::strcat(temp, const_cast<char*>(&data[i]));
 		if (std::ansi_to_vga(temp) != 16) {
 			color = std::ansi_to_vga(temp);
+			temp[99] = {0}; 
 		}	
 		terminal_putchar(data[i], color);
 	}
