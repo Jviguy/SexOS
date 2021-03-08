@@ -52,7 +52,13 @@ namespace std {
 
 			uint8_t to_vga(char* cstr) {
 				char* str = const_cast<char *> (cstr);
-
+				if (str == BLACK) {
+					return COLOR_BLACK;
+				} else if (str == BLUE) {
+					return COLOR_BLUE;
+				} else if (str == GREEN) {
+					return COLOR_GREEN;
+				}
 			}
 	};
 	

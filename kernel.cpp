@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include <string.h>
 
 #if defined(__cplusplus)
 extern "C" /* Use C linkage for kernel_main. */
@@ -11,5 +12,8 @@ void kernel_main() {
          * yet, '\n' will produce some VGA specific character instead.
          * his is normal.
          */
-	std::print("Hello, kernel World!\n");
+	char msg[100];
+	strcpy(msg, "Hello, kernel World!\n");
+	strcat(msg,  std::AnsiColors().RED);
+	std::print(msg);
 }
