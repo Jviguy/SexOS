@@ -2,11 +2,12 @@ SYSTEM_HEADER_PROJECTS="libc kernel"
 PROJECTS="libc kernel"
 
 export MAKE=${MAKE:-make}
-export HOST=${HOST:-$(sh default-host.sh)}
+export HOST=${HOST:-$(./default-host.sh)}
 
 export AR=${HOST}-ar
 export AS=${HOST}-as
 export CC=${HOST}-gcc
+export PP=${HOST}-g++
 
 export PREFIX=/usr
 export EXEC_PREFIX=$PREFIX
