@@ -3,6 +3,7 @@
 #endif
 #include <stddef.h>
 #include <stdint.h>
+#include "string.h"
 #if defined(__linux__)
 #error "Please set your compiler targets correctly!"
 #endif
@@ -31,36 +32,59 @@ namespace std {
 		COLOR_WHITE = 15,
 	};
 
-	class AnsiColors {
-		public:
-			const char* BLACK = "\e[0;30m";
-			const char* BLUE  = "\e[0;34m";
-			const char* GREEN = "\e[0;32m";
-			const char* CYAN  = "\e[0;36m";
-			const char* RED   = "\e[0;31m";
-			const char* PURPLE = "\e[0;35m";
-			const char* BROWN  = "\e[0;33m";
-			const char* GRAY   = "\e[0;37m";
-			const char* DARK_GRAY = "\e[1;30m";
-			const char* LIGHT_BLUE = "\e[1;34m";
-			const char* LIGHT_GREEN ="\e[1;32m";
-			const char* LIGHT_CYAN = "\e[1;36m";
-			const char* LIGHT_RED = "\e[1;31m";
-			const char* LIGHT_MAGENTA = "\e[1;35m";
-			const char* LIGHT_BROWN = "\e[1;33m";
-			const char* WHITE = "\e[1;37m";
-
-			uint8_t to_vga(char* cstr) {
-				char* str = const_cast<char *> (cstr);
-				if (str == BLACK) {
-					return COLOR_BLACK;
-				} else if (str == BLUE) {
-					return COLOR_BLUE;
-				} else if (str == GREEN) {
-					return COLOR_GREEN;
-				}
-			}
-	};
+	const char* ANSI_BLACK = "\e[0;30m";
+	const char* ANSI_BLUE  = "\e[0;34m";
+	const char* ANSI_GREEN = "\e[0;32m";
+	const char* ANSI_CYAN  = "\e[0;36m";
+	const char* ANSI_RED   = "\e[0;31m";
+	const char* ANSI_PURPLE = "\e[0;35m";
+	const char* ANSI_BROWN  = "\e[0;33m";
+	const char* ANSI_GRAY   = "\e[0;37m";
+	const char* ANSI_DARK_GRAY = "\e[1;30m";
+	const char* ANSI_LIGHT_BLUE = "\e[1;34m";
+	const char* ANSI_LIGHT_GREEN ="\e[1;32m";
+	const char* ANSI_LIGHT_CYAN = "\e[1;36m";
+	const char* ANSI_LIGHT_RED = "\e[1;31m";
+	const char* ANSI_LIGHT_MAGENTA = "\e[1;35m";
+	const char* ANSI_LIGHT_BROWN = "\e[1;33m";
+	const char* ANSI_WHITE = "\e[1;37m";
+	
+	static uint8_t ansi_to_vga(char* cstr) {
+		char* str = const_cast<char *> (cstr);
+		if (str == ANSI_BLACK) {
+			return COLOR_BLACK;
+		} else if (str == ANSI_BLUE) {
+			return COLOR_BLUE;
+		} else if (str == ANSI_GREEN) {
+			return COLOR_GREEN;
+		} else if (str == ANSI_CYAN) {
+			return COLOR_CYAN;
+		} else if (str == ANSI_RED) {
+			return COLOR_RED;
+		} else if (str == ANSI_PURPLE) {
+			return COLOR_MAGENTA;
+		} else if (str == ANSI_BROWN) {
+			return COLOR_BROWN;
+		} else if (str == ANSI_GRAY) {
+			return COLOR_LIGHT_GREY;
+		} else if (str == ANSI_DARK_GRAY) {
+			return COLOR_DARK_GREY;
+		} else if (str == ANSI_LIGHT_BLUE) {
+			return COLOR_LIGHT_BLUE;
+		} else if (str == ANSI_LIGHT_GREEN) {
+			return COLOR_LIGHT_GREEN;
+		} else if (str == ANSI_LIGHT_CYAN) {
+			return COLOR_LIGHT_CYAN;
+		} else if (str == ANSI_LIGHT_RED) {
+			return COLOR_LIGHT_RED;
+		} else if (str == ANSI_LIGHT_MAGENTA) {
+			return COLOR_LIGHT_MAGENTA;
+		} else if (str == ANSI_LIGHT_BROWN) {
+			return COLOR_LIGHT_BROWN;
+		} else if (str == ANSI_WHITE) {
+			return COLOR_WHITE;
+		} else return 16;
+	}
 	
 	uint8_t make_color(enum vga_color fg, enum vga_color bg) {
 		return fg | bg << 4;
@@ -110,13 +134,13 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y) {
 		terminal_buffer[index] = std::make_vgaentry(c, color);
 }
 
-void terminal_putchar(char c) {
+void terminal_putchar(char c, uint8_t color = terminal_color) {
 	if (c == '\n') {
 		terminal_row++;
 		terminal_column = 0;
 		return;
 	}
-	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
+	terminal_putentryat(c, color, terminal_column, terminal_row);
 	if (++terminal_column == VGA_WIDTH) {
 		terminal_column = 0;
 		if (++terminal_row == VGA_HEIGHT) {
@@ -127,6 +151,13 @@ void terminal_putchar(char c) {
  
 void terminal_writestring(const char* data) {
 	size_t datalen = std::strlen(data);
-	for (size_t i = 0; i < datalen; i++)
-		terminal_putchar(data[i]);
+	char temp[100];
+	uint8_t color = terminal_color;
+	for (size_t i = 0; i < datalen; i++) {
+		std::strcat(temp, const_cast<char*>(&data[i]));
+		if (std::ansi_to_vga(temp) != 16) {
+			color = std::ansi_to_vga(temp);
+		}	
+		terminal_putchar(data[i], color);
+	}
 }
