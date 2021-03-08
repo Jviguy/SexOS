@@ -14,7 +14,7 @@ BOOTDIR?=$(EXEC_PREFIX)/boot
 INCLUDEDIR?=$(PREFIX)/include
 
 CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
-CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -Iinclude -ffreestanding -nostdlib -fno-exceptions -fno-rtti
+CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -I$(DESTDIR)$(INCLUDEDIR) -ffreestanding -nostdlib -fno-exceptions -fno-rtti
 LDFLAGS:=$(LDFLAGS)
 LIBS:=$(LIBS) -nostdlib -lk -lgcc
 
