@@ -31,71 +31,90 @@ static inline uint16_t vga_entry(unsigned char uc, uint8_t color) {
 	return (uint16_t) uc | (uint16_t) color << 8;
 }
 
-#define VGA_GFX_REG            0x3CE
-#define VGA_SEQ_REG            0x3C4
-#define VGA_CRT_REG            0x3D4
+#define VGA_SEQ_INDEX_PORT 0x3C4
+#define VGA_SEQ_DATA_PORT 0x3C5
 
-#define VGA_GFX_I_RESET         0x00
-#define VGA_GFX_I_ENABLE      0x01
-#define VGA_GFX_I_COLORCMP      0x02
-#define VGA_GFX_I_ROTATE      0x03
-#define VGA_GFX_I_READMAP      0x04
-#define VGA_GFX_I_MODE         0x05
-#define VGA_GFX_I_MISC         0x06
-#define VGA_GFX_I_CNOCARE      0x07
-#define VGA_GFX_I_BITMASK      0x08
+#define VGA_GC_INDEX_PORT 0x3CE
+#define VGA_GC_DATA_PORT 0x3CF
 
-#define VGA_SEQ_I_RESET         0x00
-#define VGA_SEQ_I_CLOCK         0x01
-#define VGA_SEQ_I_MAPMASK      0x02
-#define VGA_SEQ_I_CHARMAP      0x03
-#define VGA_SEQ_I_MEMMODE      0x04
+#define VGA_CRTC_INDEX_PORT 0x3D4
+#define VGA_CRTC_DATA_PORT 0x3D5
 
-unsigned char readRegVGA(unsigned short reg, unsigned char idx)
-{
-	outb(reg, idx);
-	return inb(reg + 0x01);
+#define VGA_SEQ_MAP_MASK_REG 0x02
+#define VGA_SEQ_CHARSET_REG 0x03
+#define VGA_SEQ_MEMORY_MODE_REG 0x04
+
+#define VGA_GC_READ_MAP_SELECT_REG 0x04
+#define VGA_GC_GRAPHICS_MODE_REG 0x05
+#define VGA_GC_MISC_REG 0x06
+
+#define BYTES_PER_GLYPTH 16
+#define BYTES_SKIP 16
+#define CHARSET_LENGTH 256
+#define FONT_SIZE CHARSET_LENGTH * BYTES_PER_GLYPTH
+
+/* @iport - index port, @iport + 1 - data port */
+static inline void vga_write_reg(uint16_t iport, uint8_t reg, uint8_t val){
+	outb(iport, reg); /* Select register */
+	outb(iport + 1, val); /* Do writing through data port */
 }
 
-void writeRegVGA(unsigned short reg, unsigned char idx, unsigned char val)
-{
-	outb(reg, idx);
-	outb(reg + 1, val);
+static inline uint8_t vga_read_reg(uint16_t iport, uint8_t reg){
+	outb(iport, reg); /* Select register */
+	return inb(iport + 1); /* Do reading through data port */
 }
 
-void setFontVGA(const unsigned char * buffer, int h)
-{
-	unsigned char seq2, seq4, gfx6;
-     	int i, j;
-	unsigned char * mem;
-
-	seq2 = readRegVGA(VGA_SEQ_REG, VGA_SEQ_I_MAPMASK);
-	writeRegVGA(VGA_SEQ_REG, VGA_SEQ_I_MAPMASK, 0x04);
-
-
-	seq4 = readRegVGA(VGA_SEQ_REG, VGA_SEQ_I_MEMMODE);
-     	writeRegVGA(VGA_SEQ_REG, VGA_SEQ_I_MEMMODE, 0x06);
-
-	writeRegVGA(VGA_SEQ_REG, VGA_SEQ_I_CHARMAP, 0x00);
-
-
-	gfx6 = readRegVGA(VGA_GFX_REG, VGA_GFX_I_MISC);
-   	writeRegVGA(VGA_SEQ_REG, VGA_GFX_I_MISC, 0x00);
-
-   	mem = (unsigned char *) 0xB0000;
-
-   	for (i = 0; i < 256; i++) {
-      		for (j = 0; j < h; j++)
-         		mem[j] = buffer[h * i + j];
-      			mem += 32;
-   	}
-
-   writeRegVGA(VGA_GFX_REG, VGA_GFX_I_MISC, gfx6);
-   writeRegVGA(VGA_SEQ_REG, VGA_SEQ_I_MEMMODE, seq4);
-   writeRegVGA(VGA_SEQ_REG, VGA_SEQ_I_MAPMASK, seq2);
-
-   writeRegVGA(VGA_GFX_REG, VGA_GFX_I_MODE, 0x10);
-   writeRegVGA(VGA_GFX_REG, VGA_GFX_I_BITMASK, 0xFF);
-}	
+static void set_font(unsigned char font[FONT_SIZE]){
+   int i, j;
+   unsigned char *p = (unsigned char *)0xB8000;
+   uint8_t mem_mode, graphics_mode;
+   
+   /* Panel 2 write enable */
+   vga_write_reg(VGA_SEQ_INDEX_PORT, VGA_SEQ_MAP_MASK_REG, 0x04);
+   
+   /* To be shure, that the first font in the plane 2 is selected */
+   vga_write_reg(VGA_SEQ_INDEX_PORT, VGA_SEQ_CHARSET_REG, 0x00);
+   
+   mem_mode = vga_read_reg(VGA_SEQ_INDEX_PORT, VGA_SEQ_MEMORY_MODE_REG);
+   vga_write_reg(VGA_SEQ_INDEX_PORT, VGA_SEQ_MEMORY_MODE_REG, 0x06);
+   
+        /* I think this line is unnecessary */
+   vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_READ_MAP_SELECT_REG, 0x02);
+   
+   graphics_mode = vga_read_reg(VGA_GC_INDEX_PORT, VGA_GC_GRAPHICS_MODE_REG);
+   vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_GRAPHICS_MODE_REG, 0x00);
+   
+        /* And this line is unnecessary too, since I now, that address is 0xB8000 */
+   vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_MISC_REG, 0x0C);
+   
+   /* Write charmap */
+   for(i = 0; i < CHARSET_LENGTH; i++){
+      for(j = 0; j < BYTES_PER_GLYPTH; j++){
+         *p = *font;
+         ++p;
+         ++font;
+      }
+      p += BYTES_SKIP;
+   }
+   
+   /* Restore VGA to normal operation */
+   
+   /* Panels 0 and 1 write enable */
+   vga_write_reg(VGA_SEQ_INDEX_PORT, VGA_SEQ_MAP_MASK_REG, 0x03);
+   vga_write_reg(VGA_SEQ_INDEX_PORT, VGA_SEQ_MEMORY_MODE_REG, mem_mode);
+   
+   vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_READ_MAP_SELECT_REG, 0x00);
+   vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_GRAPHICS_MODE_REG, graphics_mode);
+   vga_write_reg(VGA_GC_INDEX_PORT, VGA_GC_MISC_REG, 0x0C);
+}
 
 #endif
+
+
+
+
+
+
+
+
+
