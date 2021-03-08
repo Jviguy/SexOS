@@ -32,60 +32,6 @@ namespace std {
 		COLOR_WHITE = 15,
 	};
 
-	const char* ANSI_BLACK = "\e[0;30m";
-	const char* ANSI_BLUE  = "\e[0;34m";
-	const char* ANSI_GREEN = "\e[0;32m";
-	const char* ANSI_CYAN  = "\e[0;36m";
-	const char* ANSI_RED   = "\e[0;31m";
-	const char* ANSI_PURPLE = "\e[0;35m";
-	const char* ANSI_BROWN  = "\e[0;33m";
-	const char* ANSI_GRAY   = "\e[0;37m";
-	const char* ANSI_DARK_GRAY = "\e[1;30m";
-	const char* ANSI_LIGHT_BLUE = "\e[1;34m";
-	const char* ANSI_LIGHT_GREEN ="\e[1;32m";
-	const char* ANSI_LIGHT_CYAN = "\e[1;36m";
-	const char* ANSI_LIGHT_RED = "\e[1;31m";
-	const char* ANSI_LIGHT_MAGENTA = "\e[1;35m";
-	const char* ANSI_LIGHT_BROWN = "\e[1;33m";
-	const char* ANSI_WHITE = "\e[1;37m";
-	
-	static uint8_t ansi_to_vga(char* cstr) {
-		char* str = const_cast<char *> (cstr);
-		if (str == ANSI_BLACK) {
-			return COLOR_BLACK;
-		} else if (str == ANSI_BLUE) {
-			return COLOR_BLUE;
-		} else if (str == ANSI_GREEN) {
-			return COLOR_GREEN;
-		} else if (str == ANSI_CYAN) {
-			return COLOR_CYAN;
-		} else if (str == ANSI_RED) {
-			return COLOR_RED;
-		} else if (str == ANSI_PURPLE) {
-			return COLOR_MAGENTA;
-		} else if (str == ANSI_BROWN) {
-			return COLOR_BROWN;
-		} else if (str == ANSI_GRAY) {
-			return COLOR_LIGHT_GREY;
-		} else if (str == ANSI_DARK_GRAY) {
-			return COLOR_DARK_GREY;
-		} else if (str == ANSI_LIGHT_BLUE) {
-			return COLOR_LIGHT_BLUE;
-		} else if (str == ANSI_LIGHT_GREEN) {
-			return COLOR_LIGHT_GREEN;
-		} else if (str == ANSI_LIGHT_CYAN) {
-			return COLOR_LIGHT_CYAN;
-		} else if (str == ANSI_LIGHT_RED) {
-			return COLOR_LIGHT_RED;
-		} else if (str == ANSI_LIGHT_MAGENTA) {
-			return COLOR_LIGHT_MAGENTA;
-		} else if (str == ANSI_LIGHT_BROWN) {
-			return COLOR_LIGHT_BROWN;
-		} else if (str == ANSI_WHITE) {
-			return COLOR_WHITE;
-		} else return 16;
-	}
-	
 	uint8_t make_color(enum vga_color fg, enum vga_color bg) {
 		return fg | bg << 4;
 	}
@@ -151,14 +97,6 @@ void terminal_putchar(char c, uint8_t color = terminal_color) {
  
 void terminal_writestring(const char* data) {
 	size_t datalen = std::strlen(data);
-	char temp[100];
-	uint8_t color = terminal_color;
-	for (size_t i = 0; i < datalen; i++) {
-		std::strcat(temp, const_cast<char*>(&data[i]));
-		if (std::ansi_to_vga(temp) != 16) {
-			color = std::ansi_to_vga(temp);
-			temp[99] = {0}; 
-		}	
-		terminal_putchar(data[i], color);
-	}
+	for (size_t i = 0; i < datalen; i++)
+		terminal_putchar(data[i]);
 }
