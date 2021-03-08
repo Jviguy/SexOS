@@ -1,5 +1,5 @@
-#include "kernel.h" 
- 
+#include "stdio.h"
+
 #if defined(__cplusplus)
 extern "C" /* Use C linkage for kernel_main. */
 #endif
@@ -11,5 +11,5 @@ void kernel_main() {
          * yet, '\n' will produce some VGA specific character instead.
          * his is normal.
          */
-	terminal_writestring("Hello, kernel World!\n");
+	std::print("Hello, kernel World!\n");
 }
