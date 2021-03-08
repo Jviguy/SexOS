@@ -30,6 +30,31 @@ namespace std {
 		COLOR_LIGHT_BROWN = 14,
 		COLOR_WHITE = 15,
 	};
+
+	class AnsiColors {
+		public:
+			const char* BLACK = "\e[0;30m";
+			const char* BLUE  = "\e[0;34m";
+			const char* GREEN = "\e[0;32m";
+			const char* CYAN  = "\e[0;36m";
+			const char* RED   = "\e[0;31m";
+			const char* PURPLE = "\e[0;35m";
+			const char* BROWN  = "\e[0;33m";
+			const char* GRAY   = "\e[0;37m";
+			const char* DARK_GRAY = "\e[1;30m";
+			const char* LIGHT_BLUE = "\e[1;34m";
+			const char* LIGHT_GREEN ="\e[1;32m";
+			const char* LIGHT_CYAN = "\e[1;36m";
+			const char* LIGHT_RED = "\e[1;31m";
+			const char* LIGHT_MAGENTA = "\e[1;35m";
+			const char* LIGHT_BROWN = "\e[1;33m";
+			const char* WHITE = "\e[1;37m";
+
+			uint8_t to_vga(char* cstr) {
+				char* str = const_cast<char *> (cstr);
+
+			}
+	};
 	
 	uint8_t make_color(enum vga_color fg, enum vga_color bg) {
 		return fg | bg << 4;
