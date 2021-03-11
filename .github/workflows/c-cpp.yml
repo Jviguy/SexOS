@@ -16,7 +16,7 @@ jobs:
     - name: download_essentials
       run: sudo apt install build-essential
     - name: mkdir
-      run: mkdir ~/opt/cross && mkdir ~/src
+      run: mkdir ~/opt && mkdir ~/opt/cross && mkdir ~/src
     - name: download_binutils
       run: wget https://ftp.gnu.org/gnu/binutils/binutils-2.36.tar.gz -O ~/src/ && tar -xf ~/src/binutils-2.36.tar.gz
     - name: download_gcc
