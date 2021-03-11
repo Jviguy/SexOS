@@ -1,0 +1,47 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: download_essentials
+      run: apt install build-essential
+    - name: mkdir
+      run: mkdir ~/opt/cross && mkdir ~/src
+    - name: download_binutils
+      run: wget https://ftp.gnu.org/gnu/binutils/binutils-2.36.tar.gz -O ~/src/ && tar -xf ~/src/binutils-2.36.tar.gz
+    - name: download_gcc
+      run: wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz -O ~/src/ && tar -xf ~/src/gcc-10.2.0.tar.gz
+    - name: prep
+      run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
+    - name: cd
+      run: cd $HOME/src
+    - name: mkdir_bins
+      run: mkdir build-binutils && mkdir build-gcc
+    - name: build_binutils
+      run: ../binutils-x.y.z/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && make && make install
+      working-directory: ~/src/build-binutils/
+    - name: build_gcc
+      run: ../gcc-x.y.z/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers && make all-gcc 
+          && make all-target-libgcc && make install-gcc && make install-target-libgcc
+      working-directory: ~/src/build-gcc/
+    - name: clone
+      run: git clone https://github.com/Jviguy/SexOS
+      working-directory: ~/
+    - name: iso_build
+      run: ./iso.sh
+    - uses: actions/upload-artifact@v2
+      with:
+        name: SexOS
+        path: ~/SexOS.iso
+    path: path/to/artifact/world.txt  
+    
