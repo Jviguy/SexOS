@@ -26,12 +26,10 @@ jobs:
     - name: mkdir_bins
       run: ls && mkdir ~/src/build-binutils && mkdir ~/src/build-gcc
     - name: build_binutils
-      run: ../binutils-2.36/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && make && make install
-      working-directory: ~/src/build-binutils/
+      run: cd ~src/build-binutils && ../binutils-2.36/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && make && make install
     - name: build_gcc
-      run: ../gcc-10.2.0/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers && make all-gcc 
+      run: cd ~/src/build-gcc && ../gcc-10.2.0/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers && make all-gcc 
           && make all-target-libgcc && make install-gcc && make install-target-libgcc
-      working-directory: ~/src/build-gcc/
     - name: clone
       run: git clone https://github.com/Jviguy/SexOS .
       working-directory: ~/
