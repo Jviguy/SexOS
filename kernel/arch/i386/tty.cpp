@@ -38,7 +38,7 @@ void terminal_putentryat(unsigned char c, uint8_t color, size_t x, size_t y) {
 	terminal_buffer[index] = vga_entry(c, color);
 }
 
-void terminal_putchar(char c, uint8_t color = terminal_color) {
+void terminal_putchar(char c, uint8_t color) {
 	if (c == '\n') {
 		terminal_row++;
 		terminal_column = 0;
@@ -55,7 +55,7 @@ void terminal_putchar(char c, uint8_t color = terminal_color) {
 
 void terminal_write(const char* data, size_t size) {
 	for (size_t i = 0; i < size; i++)
-		terminal_putchar(data[i]);
+		terminal_putchar(data[i], terminal_color);
 }
 
 void terminal_writestring(const char* data) {
