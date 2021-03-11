@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: download_essentials
-      run: apt install build-essential
+      run: sudo apt install build-essential
     - name: mkdir
       run: mkdir ~/opt/cross && mkdir ~/src
     - name: download_binutils
