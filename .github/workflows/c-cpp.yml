@@ -18,9 +18,9 @@ jobs:
     - name: mkdir
       run: mkdir ~/opt && mkdir ~/opt/cross && mkdir ~/src
     - name: download_binutils
-      run: wget https://ftp.gnu.org/gnu/binutils/binutils-2.36.tar.gz -O ~/src/ && tar -xf ~/src/binutils-2.36.tar.gz
+      run: wget https://ftp.gnu.org/gnu/binutils/binutils-2.36.tar.gz -O ~/src/binutils-2.36.tar.gz && tar -xf ~/src/binutils-2.36.tar.gz
     - name: download_gcc
-      run: wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz -O ~/src/ && tar -xf ~/src/gcc-10.2.0.tar.gz
+      run: wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz -O ~/src/gcc-10.2.0.tar.gz && tar -xf ~/src/gcc-10.2.0.tar.gz
     - name: prep
       run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
     - name: cd
