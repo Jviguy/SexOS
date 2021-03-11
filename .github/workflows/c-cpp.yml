@@ -23,8 +23,6 @@ jobs:
       run: wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz -O ~/src/gcc-10.2.0.tar.gz && tar -xf ~/src/gcc-10.2.0.tar.gz
     - name: prep
       run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
-    - name: cd
-      run: cd $HOME/src
     - name: mkdir_bins
       run: mkdir ~/src/build-binutils && mkdir ~/src/build-gcc
       working-directory: ~/src
@@ -36,7 +34,7 @@ jobs:
           && make all-target-libgcc && make install-gcc && make install-target-libgcc
       working-directory: ~/src/build-gcc/
     - name: clone
-      run: git clone https://github.com/Jviguy/SexOS
+      run: git clone https://github.com/Jviguy/SexOS .
       working-directory: ~/
     - name: iso_build
       run: ./iso.sh
