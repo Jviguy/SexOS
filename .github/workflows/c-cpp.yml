@@ -27,6 +27,7 @@ jobs:
       run: cd $HOME/src
     - name: mkdir_bins
       run: mkdir build-binutils && mkdir build-gcc
+      working-directory: ~/src
     - name: build_binutils
       run: ../binutils-2.36/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && make && make install
       working-directory: ~/src/build-binutils/
