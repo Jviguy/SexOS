@@ -38,14 +38,14 @@ void terminal_putentryat(unsigned char c, uint8_t color, size_t x, size_t y) {
 	terminal_buffer[index] = vga_entry(c, color);
 }
 
-void terminal_putchar(char c, uint8_t color) {
+void terminal_putchar(char c) {
 	if (c == '\n') {
 		terminal_row++;
 		terminal_column = 0;
 		return;
 	}
 	unsigned char uc = c;
-	terminal_putentryat(uc, terminal_color, terminal_color, terminal_row);
+	terminal_putentryat(uc, terminal_color, terminal_column, terminal_row);
 	if (++terminal_column == VGA_WIDTH) {
 		terminal_column = 0;
 		if (++terminal_row == VGA_HEIGHT)
@@ -55,7 +55,7 @@ void terminal_putchar(char c, uint8_t color) {
 
 void terminal_write(const char* data, size_t size) {
 	for (size_t i = 0; i < size; i++)
-		terminal_putchar(data[i], terminal_color);
+		terminal_putchar(data[i]);
 }
 
 void terminal_writestring(const char* data) {
