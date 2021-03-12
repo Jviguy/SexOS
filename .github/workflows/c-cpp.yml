@@ -18,7 +18,7 @@ jobs:
     - name: mkdir
       run: mkdir ~/opt
     - name: download
-      run: wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -O cross.tar.gz && tar -xvzf cross.tar.gz
+      run: wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -o /dev/null -O cross.tar.gz && tar -xvzf cross.tar.gz -O ~/opt/ -o /dev/null
     - name: prep
       run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
     - name: clone
