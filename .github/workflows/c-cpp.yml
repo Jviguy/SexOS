@@ -18,7 +18,7 @@ jobs:
     - name: mkdir
       run: mkdir ~/opt
     - name: download
-      run: wget https://drive.google.com/u/0/uc?export=download&confirm=lR4y&id=1xbhr6TyIu4pNZqlmcDxyLudGc7rssXWt -O cross.tar.gz && tar -xvzf cross.tar.gz
+      run: wget https://doc-0o-6s-docs.googleusercontent.com/docs/securesc/7obucis4e9k0u7csmlv9j9qki6c5aja6/u1bprt15v9442iasmq3sj6luk24sk866/1615527300000/06686599033562564577/06686599033562564577/1xbhr6TyIu4pNZqlmcDxyLudGc7rssXWt?e=download&authuser=0 -O cross.tar.gz && tar -xvzf cross.tar.gz
     - name: prep
       run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
     - name: clone
