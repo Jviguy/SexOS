@@ -22,7 +22,7 @@ jobs:
     - name: debug
       run: cd ~/opt/cross && ls -R
     - name: prep
-      run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
+      run: export PREFIX="~/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin/:$PATH"
     - name: clone
       run: /usr/bin/git clone https://github.com/Jviguy/SexOS ~/SexOS
     - name: iso_build
