@@ -16,24 +16,13 @@ jobs:
     - name: download_essentials
       run: sudo apt install build-essential
     - name: mkdir
-      run: mkdir ~/opt && mkdir ~/opt/cross && mkdir ~/src
-    - name: download_binutils
-      run: wget https://ftp.gnu.org/gnu/binutils/binutils-2.36.tar.gz -O ~/src/binutils-2.36.tar.gz && tar -vzxf ~/src/binutils-2.36.tar.gz -C ~/src/
-    - name: download_gcc
-      run: wget https://ftp.gnu.org/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.gz -O ~/src/gcc-10.2.0.tar.gz && tar -vzxf ~/src/gcc-10.2.0.tar.gz -C ~/src/
+      run: mkdir ~/opt
+    - name: download
+      run: wget https://drive.google.com/file/d/1xbhr6TyIu4pNZqlmcDxyLudGc7rssXWt/view?usp=sharing -O cross.tar.gz && tar -czrf cross.tar.gz
     - name: prep
       run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH"
-    - name: mkdir_bins
-      run: ls && mkdir ~/src/build-binutils && mkdir ~/src/build-gcc
-    - name: debug
-      run: cd ~/src && ls -R
-    - name: build_binutils
-      run: cd ~/src/build-binutils && ../binutils-2.36/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && make && make install
-    - name: build_gcc
-      run: cd ~/src/build-gcc && ../gcc-10.2.0/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers && make all-gcc 
-          && make all-target-libgcc && make install-gcc && make install-target-libgcc
     - name: clone
-      run: git clone https://github.com/Jviguy/SexOS .
+      run: git clone https://github.com/Jviguy/SexOS ~/
       working-directory: ~/
     - name: iso_build
       run: ./iso.sh
