@@ -19,14 +19,10 @@ jobs:
       run: mkdir ~/opt
     - name: download
       run: wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -o /dev/null -O cross.tar.gz && tar -xvzf cross.tar.gz -C ~/opt/
-    - name: debug
-      run: cd ~/opt/cross && ls -R
-    - name: prep
-      run: export PREFIX="~/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin/:$PATH"
     - name: clone
       run: /usr/bin/git clone https://github.com/Jviguy/SexOS ~/SexOS
     - name: iso_build
-      run: cd ~/SexOS && ./iso.sh
+      run: export PREFIX="~/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin/:$PATH" && cd ~/SexOS && ./iso.sh
     - uses: actions/upload-artifact@v2
       with:
         name: SexOS
