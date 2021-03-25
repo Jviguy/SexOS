@@ -18,7 +18,7 @@ jobs:
     - name: mkdir
       run: mkdir ~/opt
     - name: download
-      run: sudo wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -o /dev/null -O cross.tar.gz && sudo tar -xvzf cross.tar.gz -C "$HOME/opt/" && sudo chmod +x "$HOME/opt/cross/bin/"*
+      run: sudo wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -o /dev/null -O cross.tar.gz && sudo tar -xvzf cross.tar.gz -C "$HOME/opt/"
     - name: clone
       run: /usr/bin/git clone https://github.com/Jviguy/SexOS ~/SexOS
     - name: debug
