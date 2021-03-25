@@ -26,7 +26,7 @@ jobs:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH" && echo "::add-path::$PREFIX/bin/"
     - name: iso_build
-      run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH" && cd ~/SexOS && sudo ./iso.sh
+      run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH" && echo "$PATH" && cd ~/SexOS && sudo ./iso.sh
     - uses: actions/upload-artifact@v2
       with:
         name: SexOS
