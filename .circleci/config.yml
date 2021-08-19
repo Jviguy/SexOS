@@ -1,13 +1,29 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+  
 version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+
+jobs:
+  sexos:
+    docker:
+      - image: archlinux:latest
+    steps:
+      - run:
+          command: |
+            pacman -Sy base-devel git xorriso mtools wget grub --noconfirm
+            sudo wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -o /dev/null -O cross.tar.gz
+            mkdir ~/opt
+            sudo tar -xvzf cross.tar.gz -C "$HOME/opt/"
+            git clone https://github.com/Jviguy/SexOS ~/SexOS
+            sudo chmod 777 -R ~/opt/cross && ls ~/opt/cross
+            export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH" && echo "::add-path::$PREFIX/bin" && i686-elf-gcc --version
+            echo "$PATH" && cd ~/SexOS && sudo ./iso.sh
+            mkdir /tmp/artifacts
+            mv ~/SexOS/SexOS.iso /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  version: 2
+  commit:
     jobs:
-      - welcome/run
+      - sexos
+
