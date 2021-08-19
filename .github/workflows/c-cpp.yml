@@ -14,6 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: download_essentials
+      env:
+	ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       run: sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt install build-essential libc6:i386 libstdc++6:i386 && echo "::add-path::/lib/i386-linux-gnu" && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib/x86_64-linux-gnu:/lib/i386-linux-gnu
     - name: mkdir
       run: mkdir ~/opt
