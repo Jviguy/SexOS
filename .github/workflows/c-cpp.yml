@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: download_essentials
-      run: sudo apt install build-essential -y && sudo apt-get update
+      run: sudo apt install build-essential -y && sudo apt-get update && sudo apt-get install libc6
     - name: mkdir
       run: mkdir ~/opt
     - name: download
