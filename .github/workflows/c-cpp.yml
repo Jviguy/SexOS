@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: download_essentials
-      run: sudo apt install build-essential libc6 -y && sudo apt-get update
+      run: dpkg --add-architecture i386 && apt-get update && sudo apt install build-essential libc6:i386 libstdc++6:i386 && sudo apt-get update
     - name: mkdir
       run: mkdir ~/opt
     - name: download
