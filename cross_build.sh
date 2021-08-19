@@ -5,9 +5,9 @@ sudo apt install bison flex libgmp3-dev libmpc-dev libmpfr-dev texinfo
 mkdir ~/src
 
 wget https://ftp.gnu.org/gnu/binutils/binutils-2.37.tar.gz
-sudo tar -xzf binutils-2.37.tar.gz ~/src
+sudo tar -xzf binutils-2.37.tar.gz -C ~/src
 wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.gz
-sudo tar -xzf gcc-11.2.0.tar.gz ~/src
+sudo tar -xzf gcc-11.2.0.tar.gz -C ~/src
 
 export PREFIX="$HOME/opt/cross"
 export TARGET=i686-elf
