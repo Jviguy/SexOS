@@ -22,7 +22,7 @@ jobs:
     - name: clone
       run: /usr/bin/git clone https://github.com/Jviguy/SexOS ~/SexOS
     - name: perms
-      run: chmod 777 -r "$HOME/opt/cross/"
+      run: sudo chmod 777 -r "$HOME/opt/cross/"
     - name: debug
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
