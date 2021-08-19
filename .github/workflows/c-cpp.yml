@@ -19,16 +19,16 @@ jobs:
       run: sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt install build-essential libc6:i386 libstdc++6:i386 && echo "::add-path::/lib/i386-linux-gnu" && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib/i386-linux-gnu
     - name: mkdir
       run: mkdir ~/opt
-    - name: download
-      run: sudo wget https://github.com/Jviguy/SexOS/releases/download/v0.0.2/cross.tar.gz -o /dev/null -O cross.tar.gz && sudo tar -xvzf cross.tar.gz -C "$HOME/opt/"
+    - name: debug
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH" && echo "::add-path::$PREFIX/bin"
+    - name: build
+      run: sudo sh ./cross_build.sh
     - name: clone
       run: /usr/bin/git clone https://github.com/Jviguy/SexOS ~/SexOS
     - name: perms
       run: sudo chmod 777 -R ~/opt/cross && ls ~/opt/cross
-    - name: debug
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      run: export PREFIX="$HOME/opt/cross" && export TARGET=i686-elf && export PATH="$PREFIX/bin:$PATH" && echo "::add-path::$PREFIX/bin" && i686-elf-gcc --version
     - name: iso_build
       run: echo "$PATH" && cd ~/SexOS && sudo ./iso.sh
     - uses: actions/upload-artifact@v2
