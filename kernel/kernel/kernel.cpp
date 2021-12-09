@@ -1,16 +1,6 @@
 #include <stdio.h>
 #include <sys/io.h>
 #include <kernel/tty.h>
-
-#if defined(__cplusplus)
-extern "C" /* Use C linkage for kernel_main. */
-#endif
-void kernel_main(void) {
-	init_pics(0x20, 0x28);
-	terminal_initialize();
-	printf("Hello, kernel World!\n");
-}
-
 #define PIC1 0x20
 #define PIC2 0xA0
 
@@ -40,4 +30,12 @@ void init_pics(int pic1, int pic2)
 
 	/* disable all IRQs */
 	outb(PIC1 + 1, 0xFF);
+}
+#if defined(__cplusplus)
+extern "C" /* Use C linkage for kernel_main. */
+#endif
+void kernel_main(void) {
+	init_pics(0x20, 0x28);
+	terminal_initialize();
+	printf("Hello, kernel World!\n");
 }
