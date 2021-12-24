@@ -1,0 +1,331 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.82.90
+# Built for i686-pc-mingw32
+# Copyright (C) 1988-2012 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Dec 24 02:43:33 2021
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := c:/Users/Jeremy/Desktop/SexOS
+# default
+SHELL := sh.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+VBOX_MSI_INSTALL_PATH = D:\VirtualBox\
+# environment
+ONEDRIVE = C:\Users\ALLISON JONES\OneDrive
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+# makefile
+MAKEFILE_LIST := 
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+TMP = C:\Users\Jeremy\AppData\Local\Temp
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-46f39284-3731-41fd-9287-151d347350f7-sock
+# environment
+VSCODE_CWD = C:\Users\Jeremy\AppData\Local\Programs\Microsoft VS Code
+# environment
+PATH = C:\Program Files\jdk\bin;C:\ProgramData\scoop\shims;C:\PROGRA~1\CEdev\bin;C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\TDM-GCC-64\bin;C:\Program Files (x86)\dotnet\;C:\Program Files\jdk\bin;C:\Program Files\ffmpeg\bin;C:\Program Files\CMake\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\ProgramData\ComposerSetup\bin;C:\Users\Jeremy\Desktop\pm4\bin\php;C:\Program Files\WorldPainter;C:\Program Files\Go\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Jeremy\scoop\shims;C:\Users\Jeremy\.cargo\bin;C:\Users\Jeremy\AppData\Local\Microsoft\WindowsApps;C:\Users\Jeremy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jeremy\.dotnet\tools;C:\Users\Jeremy\go\bin;C:\Program Files\Oracle\VirtualBox;C:\Users\Jeremy\Desktop\pmmp4\bin\php;C:\Users\Jeremy\.dotne;C:\Program Files\LLVM\bin;C:\Program Files\WireGuard\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\scoop\shims;C:\PROGRA~1\CEdev\bin;C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\TDM-GCC-64\bin;C:\Program Files (x86)\dotnet\;C:\Program Files\jdk\bin;C:\Program Files\ffmpeg\bin;C:\Program Files\CMake\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\ProgramData\ComposerSetup\bin;C:\Users\Jeremy\Desktop\pm4\bin\php;C:\Program Files\WorldPainter;C:\Program Files\Git\cmd;C:\Program Files\Go\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Jeremy\scoop\shims;C:\Users\Jeremy\.cargo\bin;C:\Users\Jeremy\AppData\Local\Microsoft\WindowsApps;C:\Users\Jeremy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jeremy\.dotnet\tools;C:\Users\Jeremy\go\bin;C:\Program Files\Oracle\VirtualBox;C:\Users\Jeremy\Desktop\pmmp4\bin\php;C:\Users\Jeremy\.dotne;C:\Users\Jeremy\AppData\Local\Programs\Hyper\resources\bin;C:\Program Files\LLVM\bin;
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# environment
+CHOCOLATEYLASTPATHUPDATE = 132629191751561233
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+USERPROFILE = C:\Users\Jeremy
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+GOPATH = C:\Users\Jeremy\go
+# environment
+VSCODE_LOG_STACK = false
+# environment
+NUMBER_OF_PROCESSORS = 4
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver
+# automatic
+%F = $(notdir $%)
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_2356_XQSFHHNHDASOXELK
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+COMPUTERNAME = DESKTOP-4M05GGJ
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERNAME = Jviguy
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+CHOCOLATEYTOOLSLOCATION = C:\tools
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\Jeremy\AppData\Roaming\Code\CachedData\ccbaa2d27e38e5afa3e5c21c1c7bef4657064247
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# environment
+LOGONSERVER = \\DESKTOP-4M05GGJ
+# environment
+ONEDRIVECONSUMER = C:\Users\ALLISON JONES\OneDrive
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = DESKTOP-4M05GGJ
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+MYSQLCLIENT_LIB_DIR = C:\Program Files\MySQL\MySQL Server 8.0\lib
+# environment
+JAVA_HOME = C:\Program Files\jdk
+# default
+MAKE_VERSION := 3.82.90
+# makefile
+.DEFAULT_GOAL := 
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+LOCALAPPDATA = C:\Users\Jeremy\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# default
+.VARIABLES := 
+# environment
+CEDEV = c:\PROGRA~1\CEdev
+# environment
+PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 24 Stepping 1, AuthenticAMD
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\4a3e040ac42b878bb12297ab31b6ef5f-1.62.3-main-sock
+# environment
+HOMEPATH = \Users\Jeremy
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+SYSTEMROOT = C:\WINDOWS
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\Jeremy\AppData\Roaming
+# environment
+TEMP = C:\Users\Jeremy\AppData\Local\Temp
+# environment
+AMDRMPATH = C:\Program Files\AMD\RyzenMaster\
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+VS160COMCOMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# environment
+GIT_INSTALL_ROOT = C:\Users\Jeremy\scoop\apps\git\current
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = 1801
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 23
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 2356
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-4M05GGJ
+# variable set hash-table stats:
+# Load=101/1024=10%, Rehash=0, Collisions=12/116=10%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# C:\PROGRA~1\CEdev\bin (key C:/PROGRA~1/CEdev/bin, mtime 1618438815): 8 files, no impossibilities.
+# C:\Users\Jeremy\Desktop\pm4\bin\php (key C:/Users/Jeremy/Desktop/pm4/bin/php, mtime 1633791393): 29 files, no impossibilities.
+# C:\Users\Jeremy\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/Jeremy/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1637800490): 4 files, no impossibilities.
+# C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (key C:/WINDOWS/System32/WindowsPowerShell/v1.0/, mtime 1618459912): 30 files, no impossibilities.
+# . (key c:/Users/Jeremy/Desktop/SexOS, mtime 1640331771): 18 files, no impossibilities.
+# C:\Program Files\jdk\bin (key C:/Program Files/jdk/bin, mtime 1639624378): 125 files, no impossibilities.
+# C:\Users\Jeremy\.dotnet\tools: could not be stat'd.
+# C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1639605905): 5 files, no impossibilities.
+# C:\Program Files\MySQL\MySQL Shell 8.0\bin\ (key C:/Program Files/MySQL/MySQL Shell 8.0/bin/, mtime 1628805587): 8 files, no impossibilities.
+# C:\Program Files (x86)\dotnet\ (key C:/Program Files (x86)/dotnet/, mtime 1639893609): 8 files, no impossibilities.
+# C:\Program Files\LLVM\bin: could not be stat'd.
+# C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1637891342): 8 files, no impossibilities.
+# C:\WINDOWS\System32\OpenSSH\: could not be stat'd.
+# C:\Users\Jeremy\.cargo\bin (key C:/Users/Jeremy/.cargo/bin, mtime 1638139767): 18 files, no impossibilities.
+# C:\Users\Jeremy\scoop\shims (key C:/Users/Jeremy/scoop/shims, mtime 1619216596): 29 files, no impossibilities.
+# C:\Program Files\CMake\bin (key C:/Program Files/CMake/bin, mtime 1615159140): 7 files, no impossibilities.
+# C:\WINDOWS (key C:/WINDOWS, mtime 1639898510): 134 files, no impossibilities.
+# C:\Program Files\nodejs\ (key C:/Program Files/nodejs/, mtime 1626178202): 11 files, no impossibilities.
+# C:\Users\Jeremy\AppData\Local\Programs\Hyper\resources\bin: could not be stat'd.
+# C:\ProgramData\chocolatey\bin (key C:/ProgramData/chocolatey/bin, mtime 1614454835): 19 files, no impossibilities.
+# C:\ProgramData\scoop\shims (key C:/ProgramData/scoop/shims, mtime 1621036366): 149 files, no impossibilities.
+# C:\Program Files\Go\bin (key C:/Program Files/Go/bin, mtime 1633135690): 4 files, no impossibilities.
+# C:\Program Files\WorldPainter (key C:/Program Files/WorldPainter, mtime 1628042768): 11 files, no impossibilities.
+# C:\Users\Jeremy\go\bin (key C:/Users/Jeremy/go/bin, mtime 1636903986): 9 files, no impossibilities.
+# C:\WINDOWS\System32\Wbem (key C:/WINDOWS/System32/Wbem, mtime 1639898512): 170 files, no impossibilities.
+# C:\Program Files\Oracle\VirtualBox (key C:/Program Files/Oracle/VirtualBox, mtime 1634501053): 3 files, no impossibilities.
+# C:\ProgramData\ComposerSetup\bin (key C:/ProgramData/ComposerSetup/bin, mtime 1627957848): 5 files, no impossibilities.
+# C:\Users\Jeremy\Desktop\pmmp4\bin\php: could not be stat'd.
+# C:\Users\Jeremy\.dotne: could not be stat'd.
+# C:\Python39\ (key C:/Python39/, mtime 1612839766): 18 files, no impossibilities.
+# C:\Python39\Scripts\ (key C:/Python39/Scripts/, mtime 1623351360): 5 files, no impossibilities.
+# C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1639893538): 11 files, no impossibilities.
+# C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1640311009): 3057 files, no impossibilities.
+# C:\Program Files\WireGuard\ (key C:/Program Files/WireGuard/, mtime 1636409922): 5 files, no impossibilities.
+# C:\Users\Jeremy\AppData\Local\Microsoft\WindowsApps (key C:/Users/Jeremy/AppData/Local/Microsoft/WindowsApps, mtime 1640323874): 19 files, no impossibilities.
+# C:\Program Files\PuTTY\ (key C:/Program Files/PuTTY/, mtime 1627094233): 12 files, no impossibilities.
+# C:\Program Files\ffmpeg\bin (key C:/Program Files/ffmpeg/bin, mtime 1614500561): 5 files, no impossibilities.
+# C:\Program Files\TDM-GCC-64\bin (key C:/Program Files/TDM-GCC-64/bin, mtime 1612835115): 63 files, no impossibilities.
+
+# 4007 files, no impossibilities in 38 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# files hash-table stats:
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 8 (7) / strings = 3947 / storage = 60218 B / avg = 15 B
+# current buf: size = 8174 B / used = 3053 B / count = 187 / avg = 16 B
+# other used: total = 52044 B / count = 3760 / avg = 13 B
+# other free: total = 53 B / max = 14 B / min = 1 B / avg = 7 B
+
+# strcache performance: lookups = 4052 / hit rate = 2%
+# hash-table stats:
+# Load=3947/8192=48%, Rehash=0, Collisions=1660/4052=41%
+# Finished Make data base on Fri Dec 24 02:43:33 2021
+
+ 
+make.exe: *** No rule to make target 'all'.  Stop.
+ 

@@ -31,11 +31,29 @@ void init_pics(int pic1, int pic2)
 	/* disable all IRQs */
 	outb(PIC1 + 1, 0xFF);
 }
+
+uint32_t state = 777;
+
+uint32_t srand()
+{
+   state = state * 1664525 + 1013904223;
+   return state >> 24;
+}
+
+int randrange(int min, int max)
+{
+   return min + srand() % (( max + 1 ) - min);
+}
+
 #if defined(__cplusplus)
 extern "C" /* Use C linkage for kernel_main. */
 #endif
 void kernel_main(void) {
 	init_pics(0x20, 0x28);
 	terminal_initialize();
-	printf("Hello, kernel World!\n");
+	char* messages[5] = {"Oh im going to come!", "Fuck me daddy", "SexMC is the best WW", "Oh daddy fuck me harder", "Oh heavens im arriving", };
+	while(true) {
+		terminal_writestring(messages[randrange(0, 4)]);
+		terminal_writestring("\n");
+	}
 }
